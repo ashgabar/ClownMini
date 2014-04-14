@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 	public int currentState;
 	public string wonLost;
 
+
+
+	public int spawnPerLevel;
+
 	//defines for game states
 	//will these be needed outside the gameManager class? they could be defined in a header file
 	const int MENUSTATE = 0;
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour
 		hits = 0;
 		score = 0;
 		numClowns = 0;
+
+		spawnPerLevel = Application.loadedLevel + 5;
 		gameTime = Time.time;
 	}
 
@@ -72,7 +78,7 @@ public class GameManager : MonoBehaviour
 
 				if (gameTime >= 30.0) 
 				{
-					if(score <= 15)
+					if(score <= 5)
 					{
 						currentState = GAMEWON;
 						wonLost = "You lost!";

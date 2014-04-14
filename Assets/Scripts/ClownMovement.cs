@@ -13,6 +13,8 @@ public class ClownMovement : MonoBehaviour
 	public enum Status {UP,DOWN,MOVING};
 	public Status myStatus;
 
+	public float speed = 100.0f;
+
 	void Start () 
 	{
 
@@ -54,6 +56,8 @@ public class ClownMovement : MonoBehaviour
 		transform.renderer.material.color = Color.white;
 		while (t < time) 
 		{
+			//float step = speed * Time.deltaTime;
+			//objectToMove.position = Vector3.MoveTowards(originalPosition, position, step);
 			objectToMove.position = Vector3.Lerp (originalPosition,position,t);
 			t += Time.deltaTime / time;
 			yield return null;
@@ -89,12 +93,12 @@ public class ClownMovement : MonoBehaviour
 		switch (myStatus) 
 		{
 		case Status.UP:
-			StartCoroutine(MoveObject (this.transform,downPos,1f));
+			StartCoroutine(MoveObject (this.transform,downPos,2f));
 			currentTime = 0;
 			break;
 			
 		case Status.DOWN:
-			StartCoroutine(MoveObject(this.transform,upPos,1f));
+			StartCoroutine(MoveObject(this.transform,upPos,2f));
 			currentTime = 0;
 			break;
 			
